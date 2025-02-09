@@ -1,10 +1,12 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class OpenUserScreen extends StatelessWidget {
-  List<Map<String, dynamic>> listDetails;
-  int index;
-  OpenUserScreen({super.key, required this.listDetails, required this.index});
+  String fruit_name ;
+  String fruit_url;
+  OpenUserScreen({super.key, required this.fruit_name , required this.fruit_url});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +18,12 @@ class OpenUserScreen extends StatelessWidget {
           SizedBox(
             height: 200,
             width: 200,
-            child: Image.network(listDetails[index]["Url"]),
+            child: Image.network(fruit_url),
           ),
           const SizedBox(
             height: 10,
           ),
-          Text(listDetails[index]["Fruit"]),
+          Text(fruit_name ),
         ],
       )),
     );

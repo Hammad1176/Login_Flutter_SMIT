@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:login_project/Custom/home_page.dart';
+import 'package:login_project/Screen/BottomNavigation/bottom_nav.dart';
 
 
 class Login extends StatefulWidget {
@@ -94,7 +94,7 @@ class _LoginState extends State<Login> {
                     },
                     focusNode: emailLabelFocus,
                     decoration: InputDecoration(
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.email_outlined,
                           size: 20,
                         ),
@@ -125,7 +125,7 @@ class _LoginState extends State<Login> {
                       obscureText: passToggle,
                       obscuringCharacter: "*",
                       decoration: InputDecoration(
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.lock_outline_sharp,
                             size: 20,
                           ),
@@ -161,7 +161,7 @@ class _LoginState extends State<Login> {
                             getUserPass.text == "123") {
                           // print(userPass);
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const HomePage()));
+                              builder: (context) => const BottomNav()));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

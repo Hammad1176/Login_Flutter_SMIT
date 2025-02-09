@@ -10,6 +10,6 @@ class SchoolScreen extends StatefulWidget {
 class _SchoolScreenState extends State<SchoolScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("School"));
+    return Center(child: const Text("School"));
   }
 }

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:login_project/bottom/bussiness.dart';
-import 'package:login_project/bottom/home.dart';
-import 'package:login_project/bottom/school.dart';
+import 'package:login_project/Screen/BottomNavigation/widgets/bussiness.dart';
+import 'package:login_project/Screen/BottomNavigation/widgets/home.dart';
+import 'package:login_project/Screen/BottomNavigation/widgets/school.dart';
 
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class BottomNav extends StatefulWidget {
+  const BottomNav({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<BottomNav> createState() => _BottomNavState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _BottomNavState extends State<BottomNav> {
   int isSelected = 0;
-  List<Widget> ctmWidget = [HomeScreen(), MyBussinessScreen(), SchoolScreen()];
+  List<Widget> ctmWidget = [
+    const HomeScreen(),
+    const MyBussinessScreen(),
+    const SchoolScreen()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +38,7 @@ class _HomePageState extends State<HomePage> {
         ],
         currentIndex: isSelected,
         selectedItemColor: Colors.amber[800],
+        unselectedItemColor: Colors.blue,
         onTap: (value) {
           // ignore: avoid_print
           print("index $value");
