@@ -12,7 +12,7 @@ class CategoriesList extends StatefulWidget {
 
 class _CategoriesListState extends State<CategoriesList> {
   List<String> category = [
-    "T_shirt ",
+    "T_shirt"
     " Shirts ",
     "Pent ",
     "T_shirt ",
