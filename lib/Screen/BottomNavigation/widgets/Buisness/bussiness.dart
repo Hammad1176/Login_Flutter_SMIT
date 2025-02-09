@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/CatergoriesTab/categories.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/bottom/slider/slider.dart';
+import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/CategoryListviewGrid/grid_layout.dart';
+import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/CatergoriesTab/categories.dart';
+import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/slider/slider.dart';
 
 class MyBussinessScreen extends StatefulWidget {
   const MyBussinessScreen({super.key});
@@ -13,6 +14,8 @@ class _MyBussinessScreenState extends State<MyBussinessScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
+      height: double.infinity,
       color: const Color(0xFFfae8e0),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -72,14 +75,18 @@ class _MyBussinessScreenState extends State<MyBussinessScreen> {
                                 strokeAlign: BorderSide.strokeAlignInside))),
                   )),
             ),
-            SliderPage(context),
+            SizedBox(
+                height: 200,
+                width: double.infinity,
+                child: SliderPage(context)),
             // ignore: prefer_const_constructors
 
             const SizedBox(
               width: double.infinity,
-              height: 100,
+              height: 90,
               child: CategoriesList(),
-            )
+            ),
+            const Expanded(child: GridScreen())
           ],
         ),
       ),
