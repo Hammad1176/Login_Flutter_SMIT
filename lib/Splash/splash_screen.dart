@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<Timer> loadSplash() async {
     return Timer(
-      const Duration(seconds: 3),
+      const Duration(seconds: 4),
       onDoneLoading,
     );
   }

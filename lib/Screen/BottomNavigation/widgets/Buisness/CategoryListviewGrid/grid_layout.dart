@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:login_project/Modal/buissnes_list.dart';
-import 'package:login_project/Utils/colors.dart';
 
 class GridScreen extends StatefulWidget {
   const GridScreen({super.key});
