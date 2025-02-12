@@ -15,51 +15,74 @@ class _CategoriesListState extends State<CategoriesList> {
     "T-shirt",
     " Shirts ",
     "Pent ",
-    "T_shirt ",
+    "hoddie",
+    "Electronics",
+    "T-shirt",
     " Shirts ",
     "Pent ",
-    "T_shirt ",
-    " Shirts ",
-    "Pent "
+    "hoddie",
+    "Electronics"
   ];
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 60,
+      width: 180,
       margin: const EdgeInsets.only(top: 5, left: 2),
       decoration: const BoxDecoration(
         // color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: ListView.builder(
-        padding: const EdgeInsets.all(8),
+        shrinkWrap: true,
+        // padding: const EdgeInsets.all(5),
         itemCount: category.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
               onTap: () {
                 setState(() {
                   _selectedTab = index;
-                   ClassName.getGrid(index: index);
+                  ClassName.getGrid(index: index);
                 });
               },
               child: Container(
-                padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
+                padding: _selectedTab == index
+                    ? const EdgeInsets.only(
+                        left: 20, right: 20, top: 5, bottom: 5)
+                    : const EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 5),
                 alignment: Alignment.center,
                 margin: const EdgeInsets.all(10),
-                height: 5,
                 decoration: BoxDecoration(
                   color: _selectedTab == index
                       ? ColorCustom.tabAcitveColor
                       : ColorCustom.tabUnAcitveColor,
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(14)),
                 ),
-                child: Text(
-                  category[index],
-                  style: TextStyle(
-                    fontWeight: _selectedTab == index
-                        ? FontWeight.bold
-                        : FontWeight.normal,
-                    color: Colors.white,
-                  ),
+                child: Column(
+                  children: [
+                    Text(
+                      category[index],
+                      style: TextStyle(
+                        fontWeight: _selectedTab == index
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    Container(
+                      height: 3,
+                      width: MediaQuery.of(context).size.width * 0.08,
+                      decoration: BoxDecoration(
+                          color: _selectedTab == index
+                              ? Colors.white
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(10)),
+                    )
+                  ],
                 ),
               ));
         },
@@ -68,4 +91,3 @@ class _CategoriesListState extends State<CategoriesList> {
     );
   }
 }
-

@@ -17,12 +17,12 @@ class _MyBussinessScreenState extends State<MyBussinessScreen> {
       width: double.infinity,
       height: double.infinity,
       color: const Color(0xFFfae8e0),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            //appar
-            Row(
+      child: Column(
+        children: [
+          //appar
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
@@ -44,51 +44,50 @@ class _MyBussinessScreenState extends State<MyBussinessScreen> {
                 )
               ],
             ),
-            //search bar
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                  margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
-                  width: double.infinity,
-                  height: 40,
-                  decoration: const BoxDecoration(
-                      color: Color(0XFFfcefea),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      border: Border()),
-                  child: const TextField(
-                    textAlign: TextAlign.start,
-                    style: TextStyle(color: Colors.black),
-                    autofocus: false,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                        hintText: "Search",
-                        hintStyle: TextStyle(color: Colors.white),
-                        prefixIcon: Icon(
-                          Icons.search_rounded,
-                          color: Colors.white,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(14)),
-                            borderSide: BorderSide(
-                                color: Colors.white,
-                                width: 1.5,
-                                strokeAlign: BorderSide.strokeAlignInside))),
-                  )),
-            ),
-            SizedBox(
-                height: 200,
+          ),
+          //search bar
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Container(
+                margin: const EdgeInsets.only(left: 10, right: 10, top: 20),
                 width: double.infinity,
-                child: SliderPage(context)),
-            // ignore: prefer_const_constructors
+                height: 40,
+                decoration: const BoxDecoration(
+                    color: Color(0XFFfcefea),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    border: Border()),
+                child: const TextField(
+                  textAlign: TextAlign.start,
+                  style: TextStyle(color: Colors.grey),
+                  autofocus: false,
+                  cursorColor: Colors.white,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(top: 5),
+                    hintText: "Search",
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                    hintStyle: TextStyle(color: Colors.white),
+                    prefixIcon: Icon(
+                      Icons.search_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
+                )),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          SizedBox(width: double.infinity, child: SliderPage(context)),
+          // ignore: prefer_const_constructors
 
-            const SizedBox(
-              width: double.infinity,
-              height: 90,
-              child: CategoriesList(),
-            ),
-            const Expanded(child: GridScreen())
-          ],
-        ),
+          const SizedBox(
+            width: double.infinity,
+            child: CategoriesList(),
+          ),
+          const Expanded(child: GridScreen())
+        ],
       ),
     );
   }

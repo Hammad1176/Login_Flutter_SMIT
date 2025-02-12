@@ -12,7 +12,6 @@ class SliderPage extends StatefulWidget {
 }
 
 class _SliderPageState extends State<SliderPage> {
-
   final List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -57,7 +56,7 @@ class _SliderPageState extends State<SliderPage> {
           itemBuilder: (BuildContext, index, int1) {
             return Container(
                 margin: const EdgeInsets.all(5),
-                height: MediaQuery.of(context).size.height * 0.40,
+                height: MediaQuery.of(context).size.height * 0.20,
                 // width: MediaQuery.of(context).size.width * 0.40,
                 // decoration: BoxDecoration(
                 //   borderRadius: BorderRadius.circular(20),

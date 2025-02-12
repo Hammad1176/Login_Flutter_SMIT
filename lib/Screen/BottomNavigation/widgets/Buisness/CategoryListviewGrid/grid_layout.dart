@@ -23,24 +23,27 @@ class ClassName {
       itemCount: BuissnesList.list.length,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       // physics: const NeverScrollableScrollPhysics(),
-      gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      // physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 5,
+          crossAxisSpacing: 5,
+          mainAxisExtent: 300),
       // ignore: avoid_types_as_parameter_names
       itemBuilder: (BuildContext, index) {
         return Container(
           margin: const EdgeInsets.all(5),
-          width: 80,
-          height: 500,
           decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(10))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: double.infinity, //double.infinity
-                height: 100,
+              ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
                 child: Image.network(
+                  height: MediaQuery.of(BuildContext).size.height * 0.30,
+                  width: MediaQuery.of(BuildContext).size.width,
                   BuissnesList.list[index],
                   fit: BoxFit.fill,
                 ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_project/Modal/buissnes_list.dart';
+import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/bussiness.dart';
 // import 'package:login_project/Screen/BottomNavigation/bottom_nav.dart';
 import 'package:login_project/Splash/splash_screen.dart';
 // import 'package:login_project/Splash/splash_screen.dart';
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: SplashScreen(), //SplashScreen()
+        body: MyBussinessScreen(), //SplashScreen()
       ),
     );
   }
