@@ -26,9 +26,9 @@ class ClassName {
       // physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          mainAxisSpacing: 5,
-          crossAxisSpacing: 5,
-          mainAxisExtent: 300),
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          mainAxisExtent: 250),
       // ignore: avoid_types_as_parameter_names
       itemBuilder: (BuildContext, index) {
         return Container(
@@ -42,7 +42,7 @@ class ClassName {
               ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 child: Image.network(
-                  height: MediaQuery.of(BuildContext).size.height * 0.30,
+                  height: MediaQuery.of(BuildContext).size.height * 0.20,
                   width: MediaQuery.of(BuildContext).size.width,
                   BuissnesList.list[index],
                   fit: BoxFit.fill,
@@ -52,16 +52,19 @@ class ClassName {
                 padding: EdgeInsets.only(left: 5),
                 child: Text(
                   "Shirts ",
-                  style: TextStyle(fontSize: 15),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(5),
+              Padding(
+                padding: const EdgeInsets.all(5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Dollar Amount"),
-                    Icon(Icons.shopping_cart_outlined)
+                    Text(
+                      "\$ 20",
+                      style: TextStyle(color: Colors.grey[350]),
+                    ),
+                    const Icon(Icons.shopping_cart_outlined)
                   ],
                 ),
               )
