@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_project/Screen/BottomNavigation/bottom_nav.dart';
 
-
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -149,7 +148,7 @@ class _LoginState extends State<Login> {
                                 ? Icons.visibility
                                 : Icons.visibility_off),
                           ))),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
 
                   ElevatedButton(
                       onPressed: () {
