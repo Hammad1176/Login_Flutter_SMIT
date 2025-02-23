@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:login_project/Modal/buissnes_list.dart';
 import 'package:login_project/Screen/BottomNavigation/bottom_nav.dart';
+import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/category_provider.dart';
+import 'package:provider/provider.dart';
 // import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/category_provider.dart';
 // import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/bussiness.dart';
 // // import 'package:login_project/Screen/BottomNavigation/bottom_nav.dart';
@@ -22,15 +24,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: BottomNav(), //SplashScreen()
-      ),
-    );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => CategoryProvider())
+        ],
+        child: const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+            body: BottomNav(), //SplashScreen()
+          ),
+        ));
   }
 }
-
 
 // ChangeNotifierProvider(create: (context)=> CategoryProvider(),
 //       child: const MaterialApp(

@@ -15,8 +15,11 @@ class MyBussinessScreen extends StatefulWidget {
 class _MyBussinessScreenState extends State<MyBussinessScreen> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(create: (context)=> CategoryProvider(),
-      child: SafeArea( 
+    // ignore: avoid_print
+    print("builde buisness screen ");
+    return ChangeNotifierProvider(
+      create: (context) => CategoryProvider(),
+      child: SafeArea(
         child: SingleChildScrollView(
           reverse: true,
           scrollDirection: Axis.vertical,
@@ -41,7 +44,8 @@ class _MyBussinessScreenState extends State<MyBussinessScreen> {
                           height: 30,
                           decoration: const BoxDecoration(
                               color: Color(0XFFd6c7c0),
-                              borderRadius: BorderRadius.all(Radius.circular(5))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
                           child: const Icon(
                             Icons.arrow_back,
                             color: Colors.white,
@@ -93,8 +97,8 @@ class _MyBussinessScreenState extends State<MyBussinessScreen> {
 
                   //slider pages
                   SizedBox(width: double.infinity, child: SliderPage(context)),
-                 
-                // category list sateful with provider
+
+                  // category list sateful with provider
                   const SizedBox(
                     width: double.infinity,
                     child: CategoriesList(),
