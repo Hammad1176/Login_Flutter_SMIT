@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/bussiness.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/home.dart';
+import 'package:login_project/Screen/BottomNavigation/widgets/fav.dart';
 import 'package:login_project/Screen/BottomNavigation/widgets/school.dart';
 
 class BottomNav extends StatefulWidget {
@@ -25,7 +25,7 @@ class _BottomNavState extends State<BottomNav> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Favourit',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),

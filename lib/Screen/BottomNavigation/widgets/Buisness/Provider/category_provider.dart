@@ -3,9 +3,10 @@ import 'package:login_project/Modal/buissnes_list.dart';
 // import 'package:login_project/Modal/buissnes_list.dart';
 
 class CategoryProvider extends ChangeNotifier {
-  final _fav = [];
+  final List<BuissnesList> _fav = [];
   // ignore: non_constant_identifier_names
-  List get Fav => _fav;
+  List<BuissnesList>? get Fav => _fav;
+
   int _selectCategory = 0;
 
   int get selectedCategory => _selectCategory;

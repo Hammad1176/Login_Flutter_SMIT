@@ -1,8 +1,10 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print, prefer_interpolation_to_compose_strings
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:login_project/Modal/buissnes_list.dart';
 import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/category_provider.dart';
+import 'package:login_project/Utils/colors.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -14,19 +16,22 @@ class GridScreen extends StatefulWidget {
 }
 
 class _GridScreenState extends State<GridScreen> {
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     final getProvider = Provider.of<CategoryProvider>(context);
+    // print(
+    //     "check grid image url ${BuissnesList.productList[getProvider.selectedCategory][2].image})");
 
     return GridView.builder(
         itemCount:
             BuissnesList.productList[getProvider.selectedCategory].length,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
+        // clipBehavior: Clip.antiAliasWithSaveLayer,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 5,
             crossAxisSpacing: 5,
-            mainAxisExtent: 250),
+            mainAxisExtent: 280),
         itemBuilder: (BuildContext, getIndex) {
           return Container(
             margin: const EdgeInsets.all(5),
@@ -41,13 +46,18 @@ class _GridScreenState extends State<GridScreen> {
                   children: [
                     ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      child: Image.network(
-                        height: MediaQuery.of(BuildContext).size.height * 0.20,
-                        width: MediaQuery.of(BuildContext).size.width,
-                        BuissnesList
+                      child: CachedNetworkImage(
+                        height: MediaQuery.of(context).size.height * 0.20,
+                        width: MediaQuery.of(context).size.width,
+                        imageUrl: BuissnesList
                             .productList[getProvider.selectedCategory][getIndex]
                             .image,
-                        fit: BoxFit.fill,
+                        placeholder: (context, url) => Center(
+                            child: CircularProgressIndicator(
+                          color: ColorCustom.tabAcitveColor,
+                        )),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
                     ),
                     Align(
@@ -59,7 +69,7 @@ class _GridScreenState extends State<GridScreen> {
                                 [getIndex]);
                           },
                           icon: Icon(Icons.favorite,
-                              color: getProvider.Fav.contains(BuissnesList
+                              color: getProvider.Fav!.contains(BuissnesList
                                           .productList[
                                       getProvider.selectedCategory][getIndex])
                                   ? Colors.red
@@ -157,3 +167,22 @@ class _GridScreenState extends State<GridScreen> {
   //       BuissnesList.productList[providerdata.selectedCategory][getIndex]);
   // }
 }
+
+
+//  Image.network(
+//                         height: MediaQuery.of(BuildContext).size.height * 0.20,
+//                         width: MediaQuery.of(BuildContext).size.width,
+//                         BuissnesList
+//                             .productList[getProvider.selectedCategory][getIndex]
+//                             .image,
+//                         fit: BoxFit.fill,
+
+// CachedNetworkImage(
+//                         imageUrl: BuissnesList
+//                             .productList[getProvider.selectedCategory][getIndex]
+//                             .image,
+//                         placeholder: (context, url) =>
+//                             const Center(child: CircularProgressIndicator()),
+//                         errorWidget: (context, url, error) =>
+//                             const Icon(Icons.error),
+//                       ),
