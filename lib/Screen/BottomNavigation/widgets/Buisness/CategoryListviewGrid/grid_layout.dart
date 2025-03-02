@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, avoid_print, prefer_interpolation_to_compose_strings
+// ignore_for_file: non_constant_identifier_names
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,6 @@ import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/
 import 'package:login_project/Utils/colors.dart';
 import 'package:provider/provider.dart';
 
-// ignore: must_be_immutable
 class GridScreen extends StatefulWidget {
   const GridScreen({super.key});
 
@@ -16,22 +15,19 @@ class GridScreen extends StatefulWidget {
 }
 
 class _GridScreenState extends State<GridScreen> {
-  int index = 0;
   @override
   Widget build(BuildContext context) {
     final getProvider = Provider.of<CategoryProvider>(context);
-    // print(
-    //     "check grid image url ${BuissnesList.productList[getProvider.selectedCategory][2].image})");
 
     return GridView.builder(
         itemCount:
             BuissnesList.productList[getProvider.selectedCategory].length,
-        // clipBehavior: Clip.antiAliasWithSaveLayer,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 5,
             crossAxisSpacing: 5,
-            mainAxisExtent: 280),
+            mainAxisExtent: MediaQuery.of(context).size.height * 0.35),
+        // ignore: avoid_types_as_parameter_names
         itemBuilder: (BuildContext, getIndex) {
           return Container(
             margin: const EdgeInsets.all(5),
@@ -56,8 +52,11 @@ class _GridScreenState extends State<GridScreen> {
                             child: CircularProgressIndicator(
                           color: ColorCustom.tabAcitveColor,
                         )),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.error,
+                          color: Colors.red,
+                          size: 40,
+                        ),
                       ),
                     ),
                     Align(
@@ -73,10 +72,7 @@ class _GridScreenState extends State<GridScreen> {
                                           .productList[
                                       getProvider.selectedCategory][getIndex])
                                   ? Colors.red
-                                  : Colors.grey
-
-                              //  _isFav == getIndex ? Colors.red : Colors.grey,
-                              )),
+                                  : Colors.grey)),
                     )
                   ],
                 ),
@@ -100,22 +96,12 @@ class _GridScreenState extends State<GridScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "PKR:" +
-                            BuissnesList
-                                .productList[getProvider.selectedCategory]
-                                    [getIndex]
-                                .price
-                                .toString(),
-                        // BuissnesList.productList[getIndex].price.toString(),
+                        "PKR:${BuissnesList.productList[getProvider.selectedCategory][getIndex].price}",
                         style: TextStyle(
                             color: Colors.grey[400],
                             fontWeight: FontWeight.w500),
                       ),
-
-                      //create cutom badge add to card
-
                       Container(
-                        // color: Colors.amber,
                         height: 50,
                         width: 50,
                         padding: const EdgeInsets.only(left: 18),
@@ -135,7 +121,6 @@ class _GridScreenState extends State<GridScreen> {
                               child: Container(
                                 height: 15,
                                 width: 15,
-                                // color: Colors.red,
                                 decoration: const BoxDecoration(
                                     color: Colors.red,
                                     borderRadius:
@@ -161,28 +146,4 @@ class _GridScreenState extends State<GridScreen> {
           );
         });
   }
-
-  // void setFavouritData(final providerdata, getIndex) {
-  //   providerdata.setFav(
-  //       BuissnesList.productList[providerdata.selectedCategory][getIndex]);
-  // }
 }
-
-
-//  Image.network(
-//                         height: MediaQuery.of(BuildContext).size.height * 0.20,
-//                         width: MediaQuery.of(BuildContext).size.width,
-//                         BuissnesList
-//                             .productList[getProvider.selectedCategory][getIndex]
-//                             .image,
-//                         fit: BoxFit.fill,
-
-// CachedNetworkImage(
-//                         imageUrl: BuissnesList
-//                             .productList[getProvider.selectedCategory][getIndex]
-//                             .image,
-//                         placeholder: (context, url) =>
-//                             const Center(child: CircularProgressIndicator()),
-//                         errorWidget: (context, url, error) =>
-//                             const Icon(Icons.error),
-//                       ),

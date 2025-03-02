@@ -16,16 +16,30 @@ class _HomeScreenState extends State<HomeScreen> {
     return Consumer<CategoryProvider>(
       builder: (BuildContext context, getProvider, Widget? child) {
         return getProvider.Fav!.isEmpty
-            ? const Center(
-                child: Icon(
-                Icons.favorite,
-                size: 50,
-              ))
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.favorite,
+                      size: 50,
+                      color: Colors.grey[400],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'No favorites yet',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                  ],
+                ),
+              )
             : ListView.builder(
                 itemCount: getProvider.Fav?.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Expanded(
-                      child: Hero(
+                  return Hero(
                     tag: getProvider.Fav![index].image,
                     child: Card(
                       color: Colors.white,
@@ -57,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                  ));
+                  );
                 },
               );
       },

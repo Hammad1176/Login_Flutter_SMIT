@@ -152,7 +152,49 @@ class BuissnesList {
           image:
               "https://img.drz.lazcdn.com/g/kf/S19660a6071e84ca9b3b7ab8652a2df04x.jpg_200x200q80.jpg_.webp"),
     ],
-    [],
+    [
+      //hoddie
+      BuissnesList(
+          name: "Hoddie",
+          price: 1109,
+          id: 1,
+          image:
+              "https://img.drz.lazcdn.com/g/kf/Sb37b8e46250d4213b18afd1697e0a586N.jpg_200x200q80.avif"),
+
+      BuissnesList(
+          name: "Hoddie",
+          price: 701,
+          id: 2,
+          image:
+              "https://img.drz.lazcdn.com/g/kf/Sb37b8e46250d4213b18afd1697e0a586N.jpg_200x200q80.avif"),
+
+      BuissnesList(
+          name: "Hoddie",
+          price: 404,
+          id: 3,
+          image:
+              "https://img.drz.lazcdn.com/g/kf/Sb90dc115877f4594a8796a9ae7bbe8495.jpg_200x200q80.avif"),
+      BuissnesList(
+          name: "Hoddie",
+          price: 1400,
+          id: 4,
+          image:
+              "https://img.drz.lazcdn.com/g/kf/Scd121ddd7b54457d8d2e3bc0562f34daK.jpg_200x200q80.avif"),
+
+      BuissnesList(
+          name: "Hoddie",
+          price: 701,
+          id: 5,
+          image:
+              "https://img.drz.lazcdn.com/static/pk/p/893eaeb5a717d015c764ef2a49034031.jpg_200x200q80.jpg_.webp"),
+
+      BuissnesList(
+          name: "Hoddie",
+          price: 404,
+          id: 6,
+          image:
+              "https://img.drz.lazcdn.com/g/kf/S19660a6071e84ca9b3b7ab8652a2df04x.jpg_200x200q80.jpg_.webp"),
+    ],
     []
   ];
 }
