@@ -3,22 +3,21 @@ import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/CategoryL
 import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/CatergoriesTab/categories.dart';
 import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/slider/slider.dart';
 
-class MyBussinessScreen extends StatefulWidget {
-  const MyBussinessScreen({super.key});
+class ShoppingScreen extends StatefulWidget {
+  const ShoppingScreen({super.key});
 
   @override
-  State<MyBussinessScreen> createState() => _MyBussinessScreenState();
+  State<ShoppingScreen> createState() => _ShoppingScreenState();
 }
 
-class _MyBussinessScreenState extends State<MyBussinessScreen> {
+class _ShoppingScreenState extends State<ShoppingScreen> {
   @override
   Widget build(BuildContext context) {
     // ignore: avoid_print
     print("builde buisness screen ");
-    return SafeArea(
-      child: SingleChildScrollView(
-        reverse: true,
-        scrollDirection: Axis.vertical,
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: SafeArea(
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -30,7 +29,7 @@ class _MyBussinessScreenState extends State<MyBussinessScreen> {
                 //appar
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -40,8 +39,7 @@ class _MyBussinessScreenState extends State<MyBussinessScreen> {
                         height: 30,
                         decoration: const BoxDecoration(
                             color: Color(0XFFd6c7c0),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5))),
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
                         child: const Icon(
                           Icons.arrow_back,
                           color: Colors.white,
@@ -57,10 +55,9 @@ class _MyBussinessScreenState extends State<MyBussinessScreen> {
                 ),
                 //search bar
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
                   child: Container(
-                      margin:
-                          const EdgeInsets.only(left: 10, right: 10, top: 20),
+                      margin:               const EdgeInsets.only(left: 10, right: 10, top: 10),
                       width: double.infinity,
                       height: 40,
                       decoration: const BoxDecoration(
@@ -90,16 +87,16 @@ class _MyBussinessScreenState extends State<MyBussinessScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-    
+
                 //slider pages
                 SizedBox(width: double.infinity, child: SliderPage(context)),
-    
+
                 // category list sateful with provider
                 const SizedBox(
                   width: double.infinity,
                   child: CategoriesList(),
                 ),
-    
+
                 // create grid screen pass category index and set the value of category wise data
                 const Expanded(child: GridScreen()),
               ],

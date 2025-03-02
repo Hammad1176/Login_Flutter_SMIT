@@ -3,14 +3,14 @@ import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/
 import 'package:login_project/Screen/open_user_deatils.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class FavScreen extends StatefulWidget {
+  const FavScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<FavScreen> createState() => _FavScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _FavScreenState extends State<FavScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<CategoryProvider>(
@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               )
             : ListView.builder(
-                itemCount: getProvider.Fav?.length,
+                itemCount: getProvider.Fav!.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Hero(
                     tag: getProvider.Fav![index].image,

@@ -26,7 +26,7 @@ class _GridScreenState extends State<GridScreen> {
             crossAxisCount: 2,
             mainAxisSpacing: 5,
             crossAxisSpacing: 5,
-            mainAxisExtent: MediaQuery.of(context).size.height * 0.35),
+            mainAxisExtent: MediaQuery.of(context).size.height * 0.32),
         // ignore: avoid_types_as_parameter_names
         itemBuilder: (BuildContext, getIndex) {
           return Container(
@@ -43,11 +43,11 @@ class _GridScreenState extends State<GridScreen> {
                     ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       child: CachedNetworkImage(
-                        height: MediaQuery.of(context).size.height * 0.20,
+                        height: MediaQuery.of(context).size.height * 0.18,
                         width: MediaQuery.of(context).size.width,
-                        imageUrl: BuissnesList
+                        imageUrl: checkUril(BuissnesList
                             .productList[getProvider.selectedCategory][getIndex]
-                            .image,
+                            .image),
                         placeholder: (context, url) => Center(
                             child: CircularProgressIndicator(
                           color: ColorCustom.tabAcitveColor,
@@ -91,7 +91,7 @@ class _GridScreenState extends State<GridScreen> {
                   height: 10,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -101,41 +101,46 @@ class _GridScreenState extends State<GridScreen> {
                             color: Colors.grey[400],
                             fontWeight: FontWeight.w500),
                       ),
-                      Container(
-                        height: 50,
-                        width: 50,
-                        padding: const EdgeInsets.only(left: 18),
-                        child: Stack(
-                          children: [
-                            const Positioned(
-                              top: 9,
-                              width: 30,
-                              height: 30,
-                              child: Icon(
-                                Icons.shopping_cart_outlined,
-                                size: 25,
-                              ),
-                            ),
-                            Positioned(
-                              left: 15,
-                              child: Container(
-                                height: 15,
-                                width: 15,
-                                decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(80))),
-                                child: const Align(
-                                  alignment: Alignment.center,
-                                  child: Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                    size: 10,
-                                  ),
+                      GestureDetector(
+                        onTap: getProvider.addTOCart(BuissnesList
+                                .productList[getProvider.selectedCategory]
+                            [getIndex]),
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          padding: const EdgeInsets.only(left: 18),
+                          child:     Stack(
+                            children: [
+                              const Positioned(
+                                top: 9,
+                                width: 30,
+                                height: 30,
+                                child: Icon(
+                                  Icons.shopping_cart_outlined,
+                                  size: 25,
                                 ),
                               ),
-                            )
-                          ],
+                              Positioned(
+                                left: 15,
+                                child: Container(
+                                  height: 15,
+                                  width: 15,
+                                  decoration: const BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(80))),
+                                  child: const Align(
+                                    alignment: Alignment.center,
+                                    child: Icon(
+                                      Icons.add,
+                                      color: Colors.white,
+                                      size: 10,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       )
                     ],
@@ -147,3 +152,14 @@ class _GridScreenState extends State<GridScreen> {
         });
   }
 }
+
+checkUril(String image) {
+  // ignore: avoid_print
+  print("check url $image");
+  return image;
+}
+
+// getData(BuissnesList addTOCart) {
+//   // ignore: avoid_print
+//   print("add to cart ${addTOCart.name}");
+// }
