@@ -61,8 +61,8 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                               GestureDetector(
                                   onTap: () {
                                     // ignore: avoid_print
-                                    getProvider
-                                        .addQty(getProvider.addToCart[index], index);
+                                    getProvider.addQty(
+                                        getProvider.addToCart[index], index);
                                   },
                                   child: const Icon(Icons.add)),
                               const SizedBox(
