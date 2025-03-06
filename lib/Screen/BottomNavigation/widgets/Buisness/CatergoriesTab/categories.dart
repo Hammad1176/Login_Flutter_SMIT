@@ -19,7 +19,6 @@ class _CategoriesListState extends State<CategoriesList> {
     "T-shirt",
     "Pent ",
     "hoddie",
-    "Electronics",
   ];
   @override
   Widget build(BuildContext context) {

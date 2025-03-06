@@ -1,12 +1,8 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:login_project/Modal/buissnes_list.dart';
-// import 'package:login_project/Modal/buissnes_list.dart';
 
 class CategoryProvider extends ChangeNotifier {
   final List<BuissnesList>? _fav = [];
-  // ignore: non_constant_identifier_names
   List<BuissnesList>? get Fav => _fav;
 
   int _selectCategory = 0;
@@ -15,26 +11,25 @@ class CategoryProvider extends ChangeNotifier {
 
   final List<BuissnesList> _addToCart = [];
 
-  List<BuissnesList> get addToCart => _addToCart;
+  List<BuissnesList> get addToCart {
+    return _addToCart;
+  }
 
   addQty(BuissnesList data, int index) {
     if (_addToCart.contains(data)) {
-      data.quantity! + 1;
-      print("Productqtyyyy ${data.quantity! + 1}");
+      data.quantity++;
       notifyListeners();
-      // print("Productqtyyyy ${product.qty}");
     }
   }
 
   addTOCart(BuissnesList buisnessList) {
     if (_addToCart.contains(buisnessList)) {
-      // print("add to cart ${buisnessList.name}");
+      _addToCart.remove(buisnessList);
       notifyListeners();
     } else {
       _addToCart.add(buisnessList);
-      buisnessList.quantity = buisnessList.quantity! + 1;
+      buisnessList.quantity = buisnessList.quantity++;
       notifyListeners();
-      // print("add to cart ${buisnessList.name}");
     }
   }
 

@@ -3,7 +3,7 @@ class BuissnesList {
   String name;
   double price;
   String image;
-  int? quantity;
+  int quantity;
 
   BuissnesList(
       {required this.name,
@@ -12,21 +12,7 @@ class BuissnesList {
       required this.id,
       required this.image});
 
-  // int getID() {
-  //   return id;
-  // }
-
-  // String getName() {
-  //   return name;
-  // }
-
-  // double getprice() {
-  //   return price;
-  // }
-
-  // String getImage() {
-  //   return image;
-  // }
+  
 
   static List<List<BuissnesList>> productList = [
     [

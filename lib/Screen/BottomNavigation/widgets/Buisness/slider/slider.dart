@@ -1,8 +1,8 @@
 // ignore_for_file: must_be_immutable, non_constant_identifier_names
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
 
 class SliderPage extends StatefulWidget {
   BuildContext contextM;
@@ -40,10 +40,14 @@ class _SliderPageState extends State<SliderPage> {
                 height: MediaQuery.of(context).size.height * 0.20,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  child: Image.network(
-                    imgList[index],
-                    alignment: Alignment.center,
+                  child: CachedNetworkImage(
+                    imageUrl: imgList[index],
                     fit: BoxFit.fill,
+                    alignment: Alignment.center,
+                    placeholder: (context, url) =>
+                        const Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ));
           },
@@ -55,8 +59,6 @@ class _SliderPageState extends State<SliderPage> {
             onPageChanged: (index, reason) {
               setState(() {
                 currentIndex = index;
-                // ignore: avoid_print
-                // print("carousal print : $currentIndex");
               });
             },
           ),
@@ -87,3 +89,10 @@ class _SliderPageState extends State<SliderPage> {
     );
   }
 }
+
+
+//  Image.network(
+//                     imgList[index],
+//                     alignment: Alignment.center,
+//                     fit: BoxFit.fill,
+//                   ),

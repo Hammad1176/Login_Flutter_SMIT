@@ -29,6 +29,8 @@ class _GridScreenState extends State<GridScreen> {
             mainAxisExtent: MediaQuery.of(context).size.height * 0.32),
         // ignore: avoid_types_as_parameter_names
         itemBuilder: (BuildContext, getIndex) {
+          final data =
+              BuissnesList.productList[getProvider.selectedCategory][getIndex];
           return Container(
             margin: const EdgeInsets.all(5),
             decoration: const BoxDecoration(
@@ -45,8 +47,7 @@ class _GridScreenState extends State<GridScreen> {
                       child: CachedNetworkImage(
                         height: MediaQuery.of(context).size.height * 0.18,
                         width: MediaQuery.of(context).size.width,
-                        imageUrl: checkUril(BuissnesList
-                            .productList[getProvider.selectedCategory][getIndex]
+                        imageUrl: checkUril(data
                             .image),
                         placeholder: (context, url) => Center(
                             child: CircularProgressIndicator(
@@ -63,9 +64,7 @@ class _GridScreenState extends State<GridScreen> {
                       alignment: Alignment.topRight,
                       child: IconButton(
                           onPressed: () {
-                            getProvider.setFav(BuissnesList
-                                    .productList[getProvider.selectedCategory]
-                                [getIndex]);
+                            getProvider.setFav(data);
                           },
                           icon: Icon(Icons.favorite,
                               color: getProvider.Fav!.contains(BuissnesList
@@ -95,52 +94,57 @@ class _GridScreenState extends State<GridScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "PKR:${BuissnesList.productList[getProvider.selectedCategory][getIndex].price}",
+                      Text( 
+                        "PKR:${data.price}",
                         style: TextStyle(
                             color: Colors.grey[400],
                             fontWeight: FontWeight.w500),
                       ),
                       GestureDetector(
-                        onTap: getProvider.addTOCart(BuissnesList
-                                .productList[getProvider.selectedCategory]
-                            [getIndex]),
+                        // ignore: avoid_print
+                        onTap: () {
+                          getProvider.addTOCart(data);
+                        },
                         child: Container(
                           height: 50,
                           width: 50,
                           padding: const EdgeInsets.only(left: 18),
-                          child:     Stack(
-                            children: [
-                              const Positioned(
-                                top: 9,
-                                width: 30,
-                                height: 30,
-                                child: Icon(
-                                  Icons.shopping_cart_outlined,
-                                  size: 25,
-                                ),
-                              ),
-                              Positioned(
-                                left: 15,
-                                child: Container(
-                                  height: 15,
-                                  width: 15,
-                                  decoration: const BoxDecoration(
-                                      color: Colors.red,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(80))),
-                                  child: const Align(
-                                    alignment: Alignment.center,
-                                    child: Icon(
-                                      Icons.add,
-                                      color: Colors.white,
-                                      size: 10,
+                          child: getProvider.addToCart.contains(BuissnesList
+                                      .productList[getProvider.selectedCategory]
+                                  [getIndex])
+                              ? const Text("add in list")
+                              : Stack(
+                                  children: [
+                                    const Positioned(
+                                      top: 9,
+                                      width: 30,
+                                      height: 30,
+                                      child: Icon(
+                                        Icons.shopping_cart_outlined,
+                                        size: 25,
+                                      ),
                                     ),
-                                  ),
+                                    Positioned(
+                                      left: 15,
+                                      child: Container(
+                                        height: 15,
+                                        width: 15,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.red,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(80))),
+                                        child: const Align(
+                                          alignment: Alignment.center,
+                                          child: Icon(
+                                            Icons.add,
+                                            color: Colors.white,
+                                            size: 10,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
-                              )
-                            ],
-                          ),
                         ),
                       )
                     ],
