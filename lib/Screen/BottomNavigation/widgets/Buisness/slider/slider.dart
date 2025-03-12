@@ -26,14 +26,13 @@ class _SliderPageState extends State<SliderPage> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_print
-    // print("Get data carousal $buttonCarouselController");
+    
     return Column(
       children: [
         CarouselSlider.builder(
-          // carouselController: buttonCarouselController,
+        
           itemCount: imgList.length,
-          // ignore: avoid_types_as_parameter_names
+          
           itemBuilder: (BuildContext, index, int1) {
             return Container(
                 margin: const EdgeInsets.all(5),
@@ -89,10 +88,3 @@ class _SliderPageState extends State<SliderPage> {
     );
   }
 }
-
-
-//  Image.network(
-//                     imgList[index],
-//                     alignment: Alignment.center,
-//                     fit: BoxFit.fill,
-//                   ),

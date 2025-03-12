@@ -12,8 +12,6 @@ class BuissnesList {
       required this.id,
       required this.image});
 
-  
-
   static List<List<BuissnesList>> productList = [
     [
       //Shirts
@@ -49,46 +47,46 @@ class BuissnesList {
               "https://img.drz.lazcdn.com/static/pk/p/510e6efc952ff7b075841cd6687a12a6.jpg_200x200q80.jpg_.webp"),
     ],
     [
-      //T-shirt
+      //T shirt
       BuissnesList(
-          name: "T-shirt",
+          name: "T shirt",
           price: 1109,
           id: 1,
           image:
               "https://img.drz.lazcdn.com/static/pk/p/4083ae58c865edcdb13c7e78740013a8.jpg_200x200q80.jpg_.webp"),
       BuissnesList(
-          name: "T-shirt",
+          name: "T shirt",
           price: 1109,
           id: 2,
           image:
               "https://img.drz.lazcdn.com/static/pk/p/6b081f1ec311c6bbe14bb76860211424.jpg_200x200q80.jpg_.webp"),
       BuissnesList(
-          name: "T-shirt",
+          name: "T shirt",
           price: 1109,
           id: 3,
           image:
               "https://img.drz.lazcdn.com/static/pk/p/8074c31283c959ff3606cca47b413bc5.png_200x200q80.png_.webp"),
 
       BuissnesList(
-          name: "T-shirt",
+          name: "T shirt",
           price: 1109,
           id: 4,
           image:
               "https://img.drz.lazcdn.com/static/pk/p/111191dbd424c69525539587e8f3987a.jpg_200x200q80.jpg_.webp"),
       BuissnesList(
-          name: "T-shirt",
+          name: "T shirt",
           price: 1109,
           id: 5,
           image:
               "https://img.drz.lazcdn.com/static/pk/p/87cf7be8c312783307af11b4f02737a8.png_200x200q80.png_.webp"),
       BuissnesList(
-          name: "T-shirt",
+          name: "T shirt",
           price: 1109,
           id: 6,
           image:
               "https://img.drz.lazcdn.com/static/pk/p/b76b45ce61ed0e1fcee088b150d31acd.jpg_200x200q80.jpg_.webp"),
       BuissnesList(
-          name: "T-shirt",
+          name: "T shirt",
           price: 1109,
           id: 7,
           image:

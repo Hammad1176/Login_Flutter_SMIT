@@ -1,9 +1,10 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class OpenUserScreen extends StatelessWidget {
-  // ignore: non_constant_identifier_names
   final String fruit_name;
-  // ignore: non_constant_identifier_names
+
   final String fruit_url;
 
   const OpenUserScreen({

@@ -60,7 +60,7 @@ class _BottomNavState extends State<BottomNav> {
                     position: badges.BadgePosition.topEnd(top: -10, end: -12),
                     badgeContent: Text(
                       "${categoryProvider.addToCart.length.toString()}",
-                      style: TextStyle(fontSize: 10),
+                      style: const TextStyle(fontSize: 10),
                     ),
                     badgeAnimation: const badges.BadgeAnimation.rotation(
                       animationDuration: Duration(seconds: 1),

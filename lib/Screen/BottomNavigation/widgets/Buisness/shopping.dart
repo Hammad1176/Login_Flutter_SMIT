@@ -1,7 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/CategoryListviewGrid/grid_layout.dart';
 import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/CatergoriesTab/categories.dart';
+import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/category_provider.dart';
 import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/slider/slider.dart';
+import 'package:provider/provider.dart';
 
 class ShoppingScreen extends StatefulWidget {
   const ShoppingScreen({super.key});
@@ -11,9 +15,25 @@ class ShoppingScreen extends StatefulWidget {
 }
 
 class _ShoppingScreenState extends State<ShoppingScreen> {
+  TextEditingController searchList = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    searchList.dispose();
+
+    // Dispose the focus node
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_print
+    final getProvider = Provider.of<CategoryProvider>(context);
     print("builde buisness screen ");
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
@@ -57,19 +77,25 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2),
                   child: Container(
-                      margin:               const EdgeInsets.only(left: 10, right: 10, top: 10),
+                      margin:
+                          const EdgeInsets.only(left: 10, right: 10, top: 10),
                       width: double.infinity,
                       height: 40,
                       decoration: const BoxDecoration(
                           color: Color(0XFFfcefea),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           border: Border()),
-                      child: const TextField(
+                      child: TextField(
+                        onChanged: (value) {
+                          // getProvider.resetSearch();
+                          // getProvider.searchQuery(value);
+                        },
+                        controller: searchList,
                         textAlign: TextAlign.start,
-                        style: TextStyle(color: Colors.grey),
+                        style: const TextStyle(color: Colors.grey),
                         autofocus: false,
                         cursorColor: Colors.white,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           contentPadding: EdgeInsets.only(top: 5),
                           hintText: "Search",
                           focusedBorder: InputBorder.none,
