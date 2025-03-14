@@ -58,13 +58,15 @@ class _FavScreenState extends State<FavScreen> {
                           onTap: () {
                             String name = getProvider.Fav![index].name;
                             String image = getProvider.Fav![index].image;
+                            double price = getProvider.Fav![index].price;
 
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => OpenUserScreen(
-                                        fruit_url: image,
-                                        fruit_name: name,
+                                  builder: (context) => OpenProductDetails(
+                                        product_name: name,
+                                        product_url: image,
+                                        product_price: price,
                                       )),
                             );
                           },
