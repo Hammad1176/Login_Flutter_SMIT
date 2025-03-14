@@ -56,6 +56,7 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                                 title: Text(
                                   getProvider.addToCart[index].name,
                                 ),
+                                subtitle: getRowWiseAmount(getProvider, index),
                                 leading: CircleAvatar(
                                   backgroundImage: NetworkImage(
                                       getProvider.addToCart[index].image),
@@ -66,10 +67,10 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                                     GestureDetector(
                                         onTap: () {
                                           // ignore: avoid_print
+                                          //increament
                                           getProvider.addQty(
                                               getProvider.addToCart[index],
                                               index);
-                                          getProvider.checkADDTotalValue();
                                         },
                                         child: const Icon(
                                             Icons.add_circle_outline)),
@@ -86,10 +87,10 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                                     ),
                                     GestureDetector(
                                         onTap: () {
+                                          //reduce qty
                                           getProvider.decQty(
                                               getProvider.addToCart[index],
                                               index);
-                                          getProvider.checkDecTotalValue();
                                         },
                                         child: const Icon(
                                             Icons.remove_circle_outline)),
@@ -102,7 +103,7 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                                           getProvider.deleteItem(index);
                                           // getProvider.checkTotalValue();
                                         },
-                                        child: Icon(Icons.delete)),
+                                        child: const Icon(Icons.delete)),
                                     const SizedBox(
                                       width: 5,
                                     ),
@@ -117,43 +118,49 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
             },
           ),
         ),
-        SizedBox(
-          height: 50,
-          width: double.infinity,
-          child: Container(
-            margin: const EdgeInsets.only(left: 10, right: 10),
-            decoration: BoxDecoration(
-                color: ColorCustom.prinmary,
-                borderRadius: BorderRadius.circular(10)),
-            child: Padding(
-                padding: const EdgeInsets.only(left: 10, top: 5),
-                child: Consumer<CategoryProvider>(
-                  builder: (BuildContext context, CategoryProvider value,
-                      Widget? child) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        value.addToCart.isEmpty
-                            ? ResetTotal(value)
-                            : totalAmount(value),
-                      ],
-                    );
-                  },
-                )),
-          ),
+        Consumer<CategoryProvider>(
+          builder: (BuildContext context, value, Widget? child) {
+            return value.addToCart.isNotEmpty
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
+                    child: SizedBox(
+                      height: 50,
+                      width: double.infinity,
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10, right: 10),
+                        decoration: BoxDecoration(
+                            color: ColorCustom.prinmary,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                value.addToCart.isEmpty
+                                    ? Container()
+                                    : totalAmount(value.totalAmount()),
+                              ],
+                            )),
+                      ),
+                    ),
+                  )
+                : Container();
+          },
         )
       ],
     );
   }
 }
 
-ResetTotal(CategoryProvider value) {
-  return Text("0");
+getRowWiseAmount(CategoryProvider provider, int index) {
+  provider.rowTotal(provider.addToCart, index);
+  return Text("Total value is ${provider.addToCart[index].total}");
 }
 
-totalAmount(CategoryProvider value) {
+totalAmount(double value) {
   // value.checkTotalValue();
-  return Text("Total : ${value.totalAmount.toString()}",
-      style: const TextStyle(fontSize: 18));
+  return Text("Total : ${value.toString()}",
+      style: const TextStyle(fontSize: 18, color: Colors.grey));
 }

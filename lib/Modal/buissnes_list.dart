@@ -4,11 +4,13 @@ class BuissnesList {
   double price;
   String image;
   int quantity;
+  double total;
 
   BuissnesList(
       {required this.name,
       required this.price,
       this.quantity = 0,
+      this.total =0,
       required this.id,
       required this.image});
 
@@ -17,7 +19,7 @@ class BuissnesList {
       //Shirts
       BuissnesList(
           name: "Shirts",
-          price: 123,
+          price: 100,
           id: 1,
           image:
               "https://img.drz.lazcdn.com/static/pk/p/1c9db5bb0b1c00b3cdb7aaca28863984.png_200x200q80.png_.webp"),

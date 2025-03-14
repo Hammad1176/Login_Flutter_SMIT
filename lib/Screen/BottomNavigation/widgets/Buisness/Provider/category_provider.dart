@@ -31,30 +31,25 @@ class CategoryProvider extends ChangeNotifier {
     return _addToCart;
   }
 
-  double _totalAmount = 0;
-
-  double get totalAmount => _totalAmount;
-
 //increment qty
   addQty(BuissnesList data, int index) {
-    final boolCheck = addToCart.contains(data);
-    if (_addToCart.contains(data)) {
-      //&& index < _addToCart.length
+    // if (_addToCart.contains(data)) {
+    //&& index < _addToCart.length
 
-      final check = _addToCart[index].quantity++;
+    _addToCart[index].quantity = _addToCart[index].quantity + 1;
 
-      // data.quantity++;
-      notifyListeners();
-    }
+    // data.quantity++;
+    notifyListeners();
+    // }
   }
 
   //decreament Qty
   decQty(BuissnesList data, int index) {
-    if (_addToCart.contains(data)) {
-      if (_addToCart[index].quantity > 1) {
-        _addToCart[index].quantity = _addToCart[index].quantity - 1;
-        notifyListeners();
-      }
+    // if (_addToCart.contains(data)) {
+    if (_addToCart[index].quantity > 1) {
+      _addToCart[index].quantity = _addToCart[index].quantity - 1;
+      notifyListeners();
+      // }
     }
   }
 
@@ -69,9 +64,6 @@ class CategoryProvider extends ChangeNotifier {
     }
 
     // Ensure the quantity is updated correctly
-    if (!_addToCart.contains(buisnessList)) {
-      buisnessList.quantity = 1; // Reset quantity when added
-    }
   }
 
   // category tap
@@ -119,31 +111,20 @@ class CategoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  checkADDTotalValue() {
-    if (addToCart.isEmpty) {
-      _totalAmount = 0;
-    } else {
-      for (var i in addToCart) {
-        final total = i.price * i.quantity;
-
-        _totalAmount += total;
-      }
-      notifyListeners();
+  double totalAmount() {
+    double total = 0;
+    for (var element in _addToCart) {
+      double data = element.price * element.quantity;
+      total += data;
+      // print("check total row wise element amount ${element.quantity} ");
     }
+    return total;
   }
 
-  checkDecTotalValue() {
-    if (addToCart.isEmpty) {
-      _totalAmount = 0;
-    } else {
-      for (var i in addToCart) {
-        if (i.quantity > 1) {
-          final total = i.price * i.quantity;
-
-          _totalAmount -= total;
-        }
-        notifyListeners();
-      }
-    }
+  rowTotal(List<BuissnesList> list, int index) {
+    double total = list[index].price * list[index].quantity;
+    _addToCart[index].total = total;
+    print("check total row wise element amount $total ");
+    notifyListeners();
   }
 }
