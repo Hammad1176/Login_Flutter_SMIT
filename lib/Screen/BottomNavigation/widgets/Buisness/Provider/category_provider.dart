@@ -51,19 +51,23 @@ class CategoryProvider extends ChangeNotifier {
       notifyListeners();
       // }
     }
+
   }
 
-  addTOCart(BuissnesList buisnessList) {
+  addToCartList(BuissnesList buisnessList) {
+
     if (_addToCart.contains(buisnessList)) {
       _addToCart.remove(buisnessList);
       notifyListeners();
     } else {
       _addToCart.add(buisnessList);
-      buisnessList.quantity++;
+      // buisnessList.quantity++;
       notifyListeners();
     }
 
     // Ensure the quantity is updated correctly
+    buisnessList.quantity = 1; // Reset quantity when added
+
   }
 
   // category tap

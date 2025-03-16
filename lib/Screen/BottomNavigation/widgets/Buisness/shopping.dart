@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/CategoryListviewGrid/grid_layout.dart';
 import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/CatergoriesTab/categories.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/category_provider.dart';
+
 import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/slider/slider.dart';
-import 'package:provider/provider.dart';
+
 
 class ShoppingScreen extends StatefulWidget {
   const ShoppingScreen({super.key});
@@ -33,7 +33,6 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final getProvider = Provider.of<CategoryProvider>(context);
     print("builde buisness screen ");
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,

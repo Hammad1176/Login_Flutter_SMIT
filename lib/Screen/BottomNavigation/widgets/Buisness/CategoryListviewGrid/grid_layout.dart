@@ -105,7 +105,7 @@ class _GridScreenState extends State<GridScreen> {
                           GestureDetector(
                             // ignore: avoid_print
                             onTap: () {
-                              getProvider.addTOCart(data);
+                              getProvider.addToCartList(data);
                             },
                             child: Container(
                               height: 50,
@@ -247,7 +247,7 @@ Widget filterList(List<BuissnesList> getData, BuildContext context) {
                     GestureDetector(
                       // ignore: avoid_print
                       onTap: () {
-                        provider.addTOCart(data);
+                        provider.addToCartList(data);
                       },
                       child: Container(
                         height: 50,
