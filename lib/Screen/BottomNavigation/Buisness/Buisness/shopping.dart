@@ -1,11 +1,10 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/CategoryListviewGrid/grid_layout.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/CatergoriesTab/categories.dart';
+import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/WIdgets/grid_layout.dart';
+import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/WIdgets/categories.dart';
 
-import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/slider/slider.dart';
-
+import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/WIdgets/slider.dart';
 
 class ShoppingScreen extends StatefulWidget {
   const ShoppingScreen({super.key});

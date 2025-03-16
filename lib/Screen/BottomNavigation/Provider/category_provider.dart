@@ -51,11 +51,9 @@ class CategoryProvider extends ChangeNotifier {
       notifyListeners();
       // }
     }
-
   }
 
   addToCartList(BuissnesList buisnessList) {
-
     if (_addToCart.contains(buisnessList)) {
       _addToCart.remove(buisnessList);
       notifyListeners();
@@ -67,7 +65,6 @@ class CategoryProvider extends ChangeNotifier {
 
     // Ensure the quantity is updated correctly
     buisnessList.quantity = 1; // Reset quantity when added
-
   }
 
   // category tap
@@ -85,6 +82,7 @@ class CategoryProvider extends ChangeNotifier {
       _fav.add(favData);
       notifyListeners();
     }
+    notifyListeners();
   }
 
   searchQuery(String query) {

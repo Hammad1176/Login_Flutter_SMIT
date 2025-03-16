@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/category_provider.dart';
+import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
 import 'package:login_project/Utils/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -48,8 +48,11 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                         return Hero(
                           tag: getProvider.addToCart[index].image,
                           child: Card(
-                            color: Colors.white,
-                            elevation: 1,
+                            semanticContainer: true,
+
+                            // color: Colors.white,
+                            elevation: 5,
+                            borderOnForeground: true,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: ListTile(
@@ -57,9 +60,12 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                                   getProvider.addToCart[index].name,
                                 ),
                                 subtitle: getRowWiseAmount(getProvider, index),
-                                leading: CircleAvatar(
-                                  backgroundImage: NetworkImage(
-                                      getProvider.addToCart[index].image),
+                                leading: SizedBox(
+                                  height: 100,
+                                  child: CircleAvatar(
+                                    backgroundImage: NetworkImage(
+                                        getProvider.addToCart[index].image),
+                                  ),
                                 ),
                                 trailing: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -80,7 +86,7 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                                     Text(
                                       getProvider.addToCart[index].quantity
                                           .toString(),
-                                      style: TextStyle(fontSize: 15),
+                                      style: const TextStyle(fontSize: 15),
                                     ),
                                     const SizedBox(
                                       width: 5,
@@ -95,7 +101,7 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                                         child: const Icon(
                                             Icons.remove_circle_outline)),
                                     const SizedBox(
-                                      width: 20,
+                                      width: 10,
                                       height: 5,
                                     ),
                                     GestureDetector(
@@ -128,14 +134,15 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                       height: 50,
                       width: double.infinity,
                       child: Container(
-                        margin: const EdgeInsets.only(left: 10, right: 10),
+                        margin: const EdgeInsets.only(
+                            left: 10, right: 10, bottom: 10),
                         decoration: BoxDecoration(
-                            color: ColorCustom.prinmary,
+                            color: Colors.blueGrey[300],
                             borderRadius: BorderRadius.circular(10)),
                         child: Padding(
                             padding: const EdgeInsets.only(left: 10, top: 5),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 value.addToCart.isEmpty
@@ -154,13 +161,27 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
   }
 }
 
+//row wise total
+// ignore: non_constant_identifier_names
+
 getRowWiseAmount(CategoryProvider provider, int index) {
   provider.rowTotal(provider.addToCart, index);
-  return Text("Total value is ${provider.addToCart[index].total}");
+  String amount = provider.addToCart[index].total.toStringAsFixed(2);
+  final res = amountWithComma(amount);
+
+  return Text("Total value is $res");
+}
+
+//value add comma ,
+amountWithComma(String amount) {
+  return amount.replaceAllMapped(
+      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]},');
 }
 
 totalAmount(double value) {
   // value.checkTotalValue();
-  return Text("Total : ${value.toString()}",
-      style: const TextStyle(fontSize: 18, color: Colors.grey));
+  String totalAmount =
+      amountWithComma(value.toStringAsFixed(2)); //1000 => 1,000
+  return Text("Total Value is : $totalAmount",
+      style: const TextStyle(fontSize: 18, color: Colors.white));
 }

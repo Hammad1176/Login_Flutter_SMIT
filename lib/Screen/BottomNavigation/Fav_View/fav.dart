@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/category_provider.dart';
-import 'package:login_project/Screen/open_user_deatils.dart';
+import 'package:login_project/Modal/buissnes_list.dart';
+import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
+import 'package:login_project/Screen/BottomNavigation/Fav_View/open_user_deatils.dart';
 import 'package:provider/provider.dart';
 
 class FavScreen extends StatefulWidget {
@@ -42,8 +43,9 @@ class _FavScreenState extends State<FavScreen> {
                   return Hero(
                     tag: getProvider.Fav![index].image,
                     child: Card(
-                      color: Colors.white,
-                      elevation: 1,
+                      // color: Colors.white,
+                      borderOnForeground: true,
+                      elevation: 5,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
@@ -59,6 +61,7 @@ class _FavScreenState extends State<FavScreen> {
                             String name = getProvider.Fav![index].name;
                             String image = getProvider.Fav![index].image;
                             double price = getProvider.Fav![index].price;
+                            BuissnesList list = getProvider.Fav![index];
 
                             Navigator.push(
                               context,
@@ -67,6 +70,7 @@ class _FavScreenState extends State<FavScreen> {
                                         product_name: name,
                                         product_url: image,
                                         product_price: price,
+                                        list: list,
                                       )),
                             );
                           },

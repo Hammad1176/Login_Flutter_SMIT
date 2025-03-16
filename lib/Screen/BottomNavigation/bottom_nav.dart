@@ -1,11 +1,10 @@
 // ignore_for_file: unnecessary_string_interpolations
 
-
 import 'package:flutter/material.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/category_provider.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/shopping.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/fav.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/add_to_cart.dart';
+import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
+import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/shopping.dart';
+import 'package:login_project/Screen/BottomNavigation/Fav_View/fav.dart';
+import 'package:login_project/Screen/BottomNavigation/AddTOCart/add_to_cart.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:provider/provider.dart';
 
@@ -35,8 +34,10 @@ class _BottomNavState extends State<BottomNav> {
                 ? const Icon(Icons.favorite)
                 : badges.Badge(
                     position: badges.BadgePosition.topEnd(top: -10, end: -12),
-                    badgeContent:
-                        Text("${categoryProvider.Fav!.length.toString()}"),
+                    badgeContent: Text(
+                      "${categoryProvider.Fav!.length.toString()}",
+                      style: const TextStyle(fontSize: 10),
+                    ),
                     badgeAnimation: const badges.BadgeAnimation.rotation(
                       animationDuration: Duration(seconds: 1),
                       colorChangeAnimationDuration: Duration(seconds: 1),

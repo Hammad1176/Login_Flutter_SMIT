@@ -3,7 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:login_project/Modal/buissnes_list.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/category_provider.dart';
+import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
 import 'package:login_project/Utils/colors.dart';
 import 'package:provider/provider.dart';
 

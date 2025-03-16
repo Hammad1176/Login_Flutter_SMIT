@@ -1,7 +1,7 @@
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/CategoryListviewGrid/grid_layout.dart';
-import 'package:login_project/Screen/BottomNavigation/widgets/Buisness/Provider/category_provider.dart';
+import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
 import 'package:login_project/Utils/colors.dart';
 import 'package:provider/provider.dart';
 
