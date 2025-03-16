@@ -58,6 +58,7 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                               child: ListTile(
                                 title: Text(
                                   getProvider.addToCart[index].name,
+                                  style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                                 subtitle: getRowWiseAmount(getProvider, index),
                                 leading: SizedBox(
@@ -135,12 +136,16 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
                       width: double.infinity,
                       child: Container(
                         margin: const EdgeInsets.only(
-                            left: 10, right: 10, bottom: 10),
+                            left: 20, right: 20, bottom: 10),
                         decoration: BoxDecoration(
-                            color: Colors.blueGrey[300],
+                            color: Colors.black,
                             borderRadius: BorderRadius.circular(10)),
                         child: Padding(
-                            padding: const EdgeInsets.only(left: 10, top: 5),
+                            padding: const EdgeInsets.only(
+                              left: 10,
+                              top: 10,
+                              bottom: 10,
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -169,7 +174,10 @@ getRowWiseAmount(CategoryProvider provider, int index) {
   String amount = provider.addToCart[index].total.toStringAsFixed(2);
   final res = amountWithComma(amount);
 
-  return Text("Total value is $res");
+  return Text(
+    "Total value is $res",
+    style: TextStyle(fontWeight: FontWeight.bold),
+  );
 }
 
 //value add comma ,
@@ -183,5 +191,6 @@ totalAmount(double value) {
   String totalAmount =
       amountWithComma(value.toStringAsFixed(2)); //1000 => 1,000
   return Text("Total Value is : $totalAmount",
-      style: const TextStyle(fontSize: 18, color: Colors.white));
+      style: const TextStyle(
+          fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold));
 }
