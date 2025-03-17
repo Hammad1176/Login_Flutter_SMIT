@@ -5,6 +5,8 @@ import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/WIdgets/
 import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/WIdgets/categories.dart';
 
 import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/WIdgets/slider.dart';
+import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
+import 'package:provider/provider.dart';
 
 class ShoppingScreen extends StatefulWidget {
   const ShoppingScreen({super.key});
@@ -16,9 +18,9 @@ class ShoppingScreen extends StatefulWidget {
 class _ShoppingScreenState extends State<ShoppingScreen> {
   TextEditingController searchList = TextEditingController();
 
- 
   @override
   Widget build(BuildContext context) {
+    final getProvider = Provider.of<CategoryProvider>(context);
     print("builde buisness screen ");
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
@@ -72,8 +74,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           border: Border()),
                       child: TextField(
                         onChanged: (value) {
-                          // getProvider.resetSearch();
-                          // getProvider.searchQuery(value);
+                          getProvider.searchQuery(value);
                         },
                         controller: searchList,
                         textAlign: TextAlign.start,

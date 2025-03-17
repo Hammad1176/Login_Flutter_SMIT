@@ -19,7 +19,7 @@ class _GridScreenState extends State<GridScreen> {
   Widget build(BuildContext context) {
     final getProvider = Provider.of<CategoryProvider>(context);
 
-    return !getProvider.isFilter
+    return getProvider.searchFilter.isEmpty
         ? GridView.builder(
             itemCount:
                 BuissnesList.productList[getProvider.selectedCategory].length -
@@ -33,7 +33,7 @@ class _GridScreenState extends State<GridScreen> {
             itemBuilder: (BuildContext, getIndex) {
               final data = BuissnesList
                   .productList[getProvider.selectedCategory][getIndex];
-              print("build grid");
+              // print("build grid");
               return Container(
                 margin: const EdgeInsets.all(5),
                 decoration: const BoxDecoration(
@@ -164,11 +164,8 @@ class _GridScreenState extends State<GridScreen> {
                 ),
               );
             })
-        : filterList(getProvider.searchList,
+        : filterList(getProvider.searchFilter,
             context); // Display filtered list based on search
-    // ignore: dead_code
-    getProvider
-        .resetSearch(); // Reset search state when the search bar is cleared
   }
 }
 
@@ -262,7 +259,7 @@ Widget filterList(List<BuissnesList> getData, BuildContext context) {
                         width: 50,
                         padding: const EdgeInsets.only(left: 18),
                         child: provider.addToCart.contains(data)
-                            ? const Text("add in list")
+                            ? const Icon(Icons.check)
                             : Stack(
                                 children: [
                                   const Positioned(

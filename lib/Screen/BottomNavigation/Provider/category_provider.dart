@@ -14,18 +14,8 @@ class CategoryProvider extends ChangeNotifier {
   final List<BuissnesList> _addToCart = [];
 
   //search
-  final List<BuissnesList> _searchList = [];
-  List<BuissnesList> get searchList => _searchList;
 
   // check filter
-  void resetSearch() {
-    _isFilter = false;
-    _searchList.clear();
-    notifyListeners();
-  }
-
-  bool _isFilter = false;
-  bool get isFilter => _isFilter;
 
   List<BuissnesList> get addToCart {
     return _addToCart;
@@ -97,25 +87,32 @@ class CategoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  searchQuery(String query) {
+  List<BuissnesList> _searchList = [];
+  List<BuissnesList> get searchFilter => _searchList;
+
+  searchQuery(String query) async {
     // Reset search state when a new query is made
 
-    List<BuissnesList> _searchList = [];
-    _searchList.clear();
+    if (query.isEmpty) {
+      _searchList.clear();
+      notifyListeners();
+    } else {
+      _searchList.clear();
+      notifyListeners();
+      for (var productList in BuissnesList.productList) {
+        var matches = await productList
+            .where((element) =>
+                element.name.toLowerCase().contains(query.toLowerCase()) ||
+                element.name.toLowerCase().startsWith(query.toLowerCase()))
+            .toList();
+        if (matches.isNotEmpty) {
+          _searchList.addAll(matches);
 
-    // Clear previous search results
-    for (var productList in BuissnesList.productList) {
-      var matches = productList
-          .where((element) =>
-              element.name.toLowerCase().contains(query.toLowerCase()) ||
-              element.name.toLowerCase().startsWith(query.toLowerCase()))
-          .toList();
-      if (matches.isNotEmpty) {
-        return _searchList.addAll(matches);
-        // notifyListeners();
+          notifyListeners();
+        }
       }
     }
-    notifyListeners();
+    // Clear previous search results
   }
 
   //delet add to card data
