@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,7 +6,7 @@ import 'package:login_project/Modal/buissnes_list.dart';
 import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
 import 'package:provider/provider.dart';
 
-class OpenProductDetails extends StatelessWidget {
+class OpenProductDetails extends StatefulWidget {
   final String product_name;
 
   final String product_url;
@@ -23,6 +23,11 @@ class OpenProductDetails extends StatelessWidget {
   });
 
   @override
+  State<OpenProductDetails> createState() => _OpenProductDetailsState();
+}
+
+class _OpenProductDetailsState extends State<OpenProductDetails> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -30,12 +35,12 @@ class OpenProductDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Hero(
-              tag: product_url,
+              tag: widget.product_url,
               child: SizedBox(
                 height: MediaQuery.of(context).size.height * 0.30,
                 width: double.infinity,
                 child: Image.network(
-                  product_url,
+                  widget.product_url,
                   fit: BoxFit.fitWidth,
                   errorBuilder: (context, error, stackTrace) {
                     return const Icon(
@@ -58,16 +63,16 @@ class OpenProductDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(product_name,
+                      Text(widget.product_name,
                           style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
-                        "PKR : ${product_price.toStringAsFixed(2)}",
+                        "PKR : ${widget.product_price.toStringAsFixed(2)}",
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -93,7 +98,7 @@ class OpenProductDetails extends StatelessWidget {
                             width: 16,
                             fit: BoxFit.contain,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           const Text(
@@ -150,7 +155,7 @@ class OpenProductDetails extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            ByNow(business_list: list)
+            ByNow(business_list: widget.list)
           ],
         ),
       ),
@@ -158,7 +163,6 @@ class OpenProductDetails extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
 class ByNow extends StatefulWidget {
   BuissnesList business_list;
   ByNow({super.key, required this.business_list});

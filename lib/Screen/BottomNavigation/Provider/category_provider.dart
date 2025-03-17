@@ -5,7 +5,7 @@ import 'package:login_project/Modal/buissnes_list.dart';
 
 class CategoryProvider extends ChangeNotifier {
   final List<BuissnesList> _fav = [];
-  List<BuissnesList>? get Fav => _fav;
+  List<BuissnesList>? get fav => _fav;
 
   int _selectCategory = 0;
 
@@ -14,7 +14,7 @@ class CategoryProvider extends ChangeNotifier {
   final List<BuissnesList> _addToCart = [];
 
   //search
-  List<BuissnesList> _searchList = [];
+  final List<BuissnesList> _searchList = [];
   List<BuissnesList> get searchList => _searchList;
 
   // check filter
@@ -32,23 +32,34 @@ class CategoryProvider extends ChangeNotifier {
   }
 
 //increment qty
-  addQty(BuissnesList data, int index) {
+  addQty(BuissnesList data, int index) async {
+    print(
+        "Adding quantity for item: ${data.name}, current quantity: ${data.quantity}");
+
     // if (_addToCart.contains(data)) {
     //&& index < _addToCart.length
 
     _addToCart[index].quantity = _addToCart[index].quantity + 1;
 
-    // data.quantity++;
     notifyListeners();
+
+    // data.quantity++;
+    // notifyListeners();
     // }
   }
 
   //decreament Qty
-  decQty(BuissnesList data, int index) {
+  decQty(BuissnesList data, int index) async {
+    print(
+        "Decreasing quantity for item: ${data.name}, current quantity: ${data.quantity}");
+
     // if (_addToCart.contains(data)) {
     if (_addToCart[index].quantity > 1) {
-      _addToCart[index].quantity = _addToCart[index].quantity - 1;
+      // ignore: await_only_futures
+      _addToCart[index].quantity = await _addToCart[index].quantity - 1;
       notifyListeners();
+
+      //
       // }
     }
   }
@@ -62,9 +73,10 @@ class CategoryProvider extends ChangeNotifier {
       // buisnessList.quantity++;
       notifyListeners();
     }
+    notifyListeners();
 
     // Ensure the quantity is updated correctly
-    buisnessList.quantity = 1; // Reset quantity when added
+    // buisnessList.quantity = 1; // Reset quantity when added
   }
 
   // category tap
@@ -86,11 +98,10 @@ class CategoryProvider extends ChangeNotifier {
   }
 
   searchQuery(String query) {
-    resetSearch(); // Reset search state when a new query is made
+    // Reset search state when a new query is made
 
-    _isFilter = false;
+    List<BuissnesList> _searchList = [];
     _searchList.clear();
-    notifyListeners();
 
     // Clear previous search results
     for (var productList in BuissnesList.productList) {
@@ -100,15 +111,17 @@ class CategoryProvider extends ChangeNotifier {
               element.name.toLowerCase().startsWith(query.toLowerCase()))
           .toList();
       if (matches.isNotEmpty) {
-        _isFilter = true;
-        _searchList.addAll(matches);
-        notifyListeners();
+        return _searchList.addAll(matches);
+        // notifyListeners();
       }
     }
+    notifyListeners();
   }
 
   //delet add to card data
   deleteItem(int index) {
+    print("Deleting item at index: $index, item: ${_addToCart[index].name}");
+
     _addToCart.removeAt(index);
     notifyListeners();
   }
@@ -123,10 +136,10 @@ class CategoryProvider extends ChangeNotifier {
     return total;
   }
 
-  rowTotal(List<BuissnesList> list, int index) {
+  rowTotal(List<BuissnesList> list, int index) async {
     double total = list[index].price * list[index].quantity;
-    _addToCart[index].total = total;
-    print("check total row wise element amount $total ");
+    _addToCart[index].total = await total;
+    // print("check total row wise element amount $total ");
     notifyListeners();
   }
 }

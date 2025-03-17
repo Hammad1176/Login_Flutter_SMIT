@@ -9,7 +9,7 @@ class BuissnesList {
   BuissnesList(
       {required this.name,
       required this.price,
-      this.quantity = 0,
+      this.quantity = 1,
       this.total =0,
       required this.id,
       required this.image});

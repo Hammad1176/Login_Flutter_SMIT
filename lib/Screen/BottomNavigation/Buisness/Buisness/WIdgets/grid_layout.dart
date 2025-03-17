@@ -33,6 +33,7 @@ class _GridScreenState extends State<GridScreen> {
             itemBuilder: (BuildContext, getIndex) {
               final data = BuissnesList
                   .productList[getProvider.selectedCategory][getIndex];
+              print("build grid");
               return Container(
                 margin: const EdgeInsets.all(5),
                 decoration: const BoxDecoration(
@@ -69,7 +70,7 @@ class _GridScreenState extends State<GridScreen> {
                                 getProvider.setFav(data);
                               },
                               icon: Icon(Icons.favorite,
-                                  color: getProvider.Fav!.contains(
+                                  color: getProvider.fav!.contains(
                                           BuissnesList.productList[getProvider
                                               .selectedCategory][getIndex])
                                       ? Colors.red
@@ -107,46 +108,53 @@ class _GridScreenState extends State<GridScreen> {
                             onTap: () {
                               getProvider.addToCartList(data);
                             },
-                            child: Container(
-                              height: 50,
-                              width: 50,
-                              padding: const EdgeInsets.only(left: 18),
-                              child: getProvider.addToCart.contains(BuissnesList
-                                          .productList[
-                                      getProvider.selectedCategory][getIndex])
-                                  ? const Icon(Icons.check)
-                                  : Stack(
-                                      children: [
-                                        const Positioned(
-                                          top: 9,
-                                          width: 30,
-                                          height: 30,
-                                          child: Icon(
-                                            Icons.shopping_cart_outlined,
-                                            size: 25,
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 15,
-                                          child: Container(
-                                            height: 15,
-                                            width: 15,
-                                            decoration: const BoxDecoration(
-                                                color: Colors.red,
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(80))),
-                                            child: const Align(
-                                              alignment: Alignment.center,
+                            child: Consumer<CategoryProvider>(
+                              builder: (context, value, Widget? child) {
+                                print("add to cart");
+                                return Container(
+                                  height: 50,
+                                  width: 50,
+                                  padding: const EdgeInsets.only(left: 18),
+                                  child: getProvider.addToCart.contains(
+                                          BuissnesList.productList[getProvider
+                                              .selectedCategory][getIndex])
+                                      ? const Icon(Icons.check)
+                                      : Stack(
+                                          children: [
+                                            const Positioned(
+                                              top: 9,
+                                              width: 30,
+                                              height: 30,
                                               child: Icon(
-                                                Icons.add,
-                                                color: Colors.white,
-                                                size: 10,
+                                                Icons.shopping_cart_outlined,
+                                                size: 25,
                                               ),
                                             ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                            Positioned(
+                                              left: 15,
+                                              child: Container(
+                                                height: 15,
+                                                width: 15,
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.red,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                80))),
+                                                child: const Align(
+                                                  alignment: Alignment.center,
+                                                  child: Icon(
+                                                    Icons.add,
+                                                    color: Colors.white,
+                                                    size: 10,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                );
+                              },
                             ),
                           )
                         ],
@@ -216,7 +224,7 @@ Widget filterList(List<BuissnesList> getData, BuildContext context) {
                           provider.setFav(data);
                         },
                         icon: Icon(Icons.favorite,
-                            color: provider.Fav!.contains(data)
+                            color: provider.fav!.contains(data)
                                 ? Colors.red
                                 : Colors.grey)),
                   )

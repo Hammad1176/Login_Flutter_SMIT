@@ -16,20 +16,7 @@ class ShoppingScreen extends StatefulWidget {
 class _ShoppingScreenState extends State<ShoppingScreen> {
   TextEditingController searchList = TextEditingController();
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    searchList.dispose();
-
-    // Dispose the focus node
-    super.dispose();
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     print("builde buisness screen ");

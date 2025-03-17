@@ -30,12 +30,12 @@ class _BottomNavState extends State<BottomNav> {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: categoryProvider.Fav!.isEmpty
+            icon: categoryProvider.fav!.isEmpty
                 ? const Icon(Icons.favorite)
                 : badges.Badge(
                     position: badges.BadgePosition.topEnd(top: -10, end: -12),
                     badgeContent: Text(
-                      "${categoryProvider.Fav!.length.toString()}",
+                      "${categoryProvider.fav!.length.toString()}",
                       style: const TextStyle(fontSize: 10),
                     ),
                     badgeAnimation: const badges.BadgeAnimation.rotation(
@@ -45,7 +45,7 @@ class _BottomNavState extends State<BottomNav> {
                       curve: Curves.fastOutSlowIn,
                       colorChangeAnimationCurve: Curves.easeInCubic,
                     ),
-                    showBadge: categoryProvider.Fav!.isEmpty ? false : true,
+                    showBadge: categoryProvider.fav!.isEmpty ? false : true,
                     child: const Icon(Icons.favorite),
                   ),
             label: 'Favourit List',

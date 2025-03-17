@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_project/Modal/buissnes_list.dart';
 import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
-import 'package:login_project/Screen/BottomNavigation/Fav_View/open_user_deatils.dart';
+import 'package:login_project/Screen/BottomNavigation/fav_View/open_user_deatils.dart';
 import 'package:provider/provider.dart';
 
 class FavScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _FavScreenState extends State<FavScreen> {
   Widget build(BuildContext context) {
     return Consumer<CategoryProvider>(
       builder: (BuildContext context, getProvider, Widget? child) {
-        return getProvider.Fav!.isEmpty
+        return getProvider.fav!.isEmpty
             ? Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -38,10 +38,10 @@ class _FavScreenState extends State<FavScreen> {
                 ),
               )
             : ListView.builder(
-                itemCount: getProvider.Fav!.length,
+                itemCount: getProvider.fav!.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Hero(
-                    tag: getProvider.Fav![index].image,
+                    tag: getProvider.fav![index].image,
                     child: Card(
                       // color: Colors.white,
                       borderOnForeground: true,
@@ -50,18 +50,18 @@ class _FavScreenState extends State<FavScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
                           title: Text(
-                            getProvider.Fav![index].name,
+                            getProvider.fav![index].name,
                           ),
                           leading: CircleAvatar(
                             backgroundImage:
-                                NetworkImage(getProvider.Fav![index].image),
+                                NetworkImage(getProvider.fav![index].image),
                           ),
                           trailing: const Icon(Icons.navigate_next),
                           onTap: () {
-                            String name = getProvider.Fav![index].name;
-                            String image = getProvider.Fav![index].image;
-                            double price = getProvider.Fav![index].price;
-                            BuissnesList list = getProvider.Fav![index];
+                            String name = getProvider.fav![index].name;
+                            String image = getProvider.fav![index].image;
+                            double price = getProvider.fav![index].price;
+                            BuissnesList list = getProvider.fav![index];
 
                             Navigator.push(
                               context,
