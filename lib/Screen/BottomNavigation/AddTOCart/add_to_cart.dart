@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
+import 'package:login_project/Utils/colors.dart';
 import 'package:provider/provider.dart';
 
 class AddTOCardScreen extends StatefulWidget {
@@ -13,147 +14,151 @@ class _AddTOCardScreenState extends State<AddTOCardScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CategoryProvider>(context, listen: true);
-    return Column(
-      children: [
-        Expanded(
-          flex: 3,
-          child: provider.addToCart.isEmpty
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.shopping_cart_outlined,
-                      size: 50,
-                      color: Colors.grey[400],
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'No items in the cart yet',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.grey[600],
+    return Container(
+      color: ColorCustom.background,
+      child: Column(
+        children: [
+          Expanded(
+            flex: 3,
+            child: provider.addToCart.isEmpty
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.shopping_cart_outlined,
+                        size: 50,
+                        color: Colors.grey[400],
                       ),
-                    ),
-                  ],
-                )
-              : ListView.builder(
-                  itemCount: provider.addToCart.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    // Ensure the index is within the valid range
+                      const SizedBox(height: 10),
+                      Text(
+                        'No items in the cart yet',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                    ],
+                  )
+                : ListView.builder(
+                    itemCount: provider.addToCart.length,
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext context, int index) {
+                      // Ensure the index is within the valid range
 
-                    return Hero(
-                      tag: provider.addToCart[index].image,
-                      child: Card(
-                        semanticContainer: true,
-
-                        // color: Colors.white,
-                        elevation: 5,
-                        borderOnForeground: true,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ListTile(
-                            title: Text(
-                              provider.addToCart[index].name,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: getRowWiseAmount(provider, index),
-                            leading: SizedBox(
-                              height: 100,
-                              child: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    provider.addToCart[index].image),
+                      return Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Card(
+                          semanticContainer: true,
+                          color: ColorCustom.background,
+                          elevation: 8,
+                          borderOnForeground: true,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              title: Text(
+                                provider.addToCart[index].name,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
                               ),
-                            ),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                GestureDetector(
-                                    onTap: () {
-                                      // ignore: avoid_print
-                                      //increament
-                                      provider.addQty(
-                                          provider.addToCart[index], index);
-                                    },
-                                    child:
-                                        const Icon(Icons.add_circle_outline)),
-                                const SizedBox(
-                                  width: 5,
+                              subtitle: getRowWiseAmount(provider, index),
+                              leading: SizedBox(
+                                height: 100,
+                                child: CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      provider.addToCart[index].image),
                                 ),
-                                Text(
-                                  provider.addToCart[index].quantity.toString(),
-                                  style: const TextStyle(fontSize: 15),
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                GestureDetector(
-                                    onTap: () {
-                                      //reduce qty
-                                      provider.decQty(
-                                          provider.addToCart[index], index);
-                                    },
-                                    child: const Icon(
-                                        Icons.remove_circle_outline)),
-                                const SizedBox(
-                                  width: 10,
-                                  height: 5,
-                                ),
-                                GestureDetector(
-                                    onTap: () {
-                                      provider.deleteItem(index);
-                                      // provider.checkTotalValue();
-                                    },
-                                    child: const Icon(Icons.delete)),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                              ],
+                              ),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  GestureDetector(
+                                      onTap: () {
+                                        // ignore: avoid_print
+                                        //increament
+                                        provider.addQty(
+                                            provider.addToCart[index], index);
+                                      },
+                                      child:
+                                          const Icon(Icons.add_circle_outline)),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    provider.addToCart[index].quantity
+                                        .toString(),
+                                    style: const TextStyle(fontSize: 15),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  GestureDetector(
+                                      onTap: () {
+                                        //reduce qty
+                                        provider.decQty(
+                                            provider.addToCart[index], index);
+                                      },
+                                      child: const Icon(
+                                          Icons.remove_circle_outline)),
+                                  const SizedBox(
+                                    width: 10,
+                                    height: 5,
+                                  ),
+                                  GestureDetector(
+                                      onTap: () {
+                                        provider.deleteItem(index);
+                                        // provider.checkTotalValue();
+                                      },
+                                      child: const Icon(Icons.delete)),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
+                      );
+                    },
+                  ),
+          ),
+          Consumer<CategoryProvider>(
+            builder: (BuildContext context, value, Widget? child) {
+              return value.addToCart.isNotEmpty
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 10),
+                      child: SizedBox(
+                        height: 50,
+                        width: double.infinity,
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                              left: 20, right: 20, bottom: 10),
+                          decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                              padding: const EdgeInsets.only(
+                                left: 10,
+                                top: 10,
+                                bottom: 10,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  value.addToCart.isEmpty
+                                      ? Container()
+                                      : totalAmount(value.totalAmount()),
+                                ],
+                              )),
+                        ),
                       ),
-                    );
-                  },
-                ),
-        ),
-        Consumer<CategoryProvider>(
-          builder: (BuildContext context, value, Widget? child) {
-            return value.addToCart.isNotEmpty
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 10),
-                    child: SizedBox(
-                      height: 50,
-                      width: double.infinity,
-                      child: Container(
-                        margin: const EdgeInsets.only(
-                            left: 20, right: 20, bottom: 10),
-                        decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 10,
-                              top: 10,
-                              bottom: 10,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                value.addToCart.isEmpty
-                                    ? Container()
-                                    : totalAmount(value.totalAmount()),
-                              ],
-                            )),
-                      ),
-                    ),
-                  )
-                : Container();
-          },
-        )
-      ],
+                    )
+                  : Container();
+            },
+          )
+        ],
+      ),
     );
   }
 }
@@ -184,5 +189,7 @@ totalAmount(double value) {
       amountWithComma(value.toStringAsFixed(2)); //1000 => 1,000
   return Text("Total Value is : $totalAmount",
       style: const TextStyle(
-          fontSize: 18, color: Colors.white, ));
+        fontSize: 18,
+        color: Colors.white,
+      ));
 }

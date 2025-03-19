@@ -101,13 +101,15 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                 ),
 
                 //slider pages
-                SizedBox(width: double.infinity, child: SliderPage(context)),
+                SizedBox(child: SliderPage(context)),
 
                 // category list sateful with provider
-                const SizedBox(
-                  width: double.infinity,
-                  child: CategoriesList(),
-                ),
+                getProvider.searchFilter.isNotEmpty
+                    ? Container()
+                    : const SizedBox(
+                        width: double.infinity,
+                        child: CategoriesList(),
+                      ),
 
                 // create grid screen pass category index and set the value of category wise data
                 const Expanded(child: GridScreen()),

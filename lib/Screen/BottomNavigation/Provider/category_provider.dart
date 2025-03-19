@@ -87,30 +87,41 @@ class CategoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<BuissnesList> _searchList = [];
+  final List<BuissnesList> _searchList = [];
   List<BuissnesList> get searchFilter => _searchList;
+  bool? _filterIsNotMatch;
+  bool get filterIsNotMatch => _filterIsNotMatch!;
 
-  searchQuery(String query) async {
+  searchQuery(String query) {
     // Reset search state when a new query is made
 
     if (query.isEmpty) {
+      _filterIsNotMatch = false;
       _searchList.clear();
       notifyListeners();
-    } else {
+    } else if (query.isNotEmpty) {
+      List<BuissnesList> matches = [];
+      _filterIsNotMatch = false;
       _searchList.clear();
       notifyListeners();
       for (var productList in BuissnesList.productList) {
-        var matches = await productList
+        matches = productList
             .where((element) =>
-                element.name.toLowerCase().contains(query.toLowerCase()) ||
+                // element.name.toLowerCase().contains(query.toLowerCase()) ||
                 element.name.toLowerCase().startsWith(query.toLowerCase()))
             .toList();
-        if (matches.isNotEmpty) {
-          _searchList.addAll(matches);
 
+        if (matches.isNotEmpty) {
+          print("match ${matches.runtimeType}");
+          _searchList.addAll(matches);
           notifyListeners();
         }
       }
+      // if (matches.isEmpty) {
+      //   print("matches is empty $matches");
+      //   _filterIsNotMatch = true;
+      //   notifyListeners();
+      // }
     }
     // Clear previous search results
   }
@@ -134,8 +145,8 @@ class CategoryProvider extends ChangeNotifier {
   }
 
   rowTotal(List<BuissnesList> list, int index) async {
-    double total = list[index].price * list[index].quantity;
-    _addToCart[index].total = await total;
+    double total = await list[index].price * list[index].quantity;
+    _addToCart[index].total = total;
     // print("check total row wise element amount $total ");
     notifyListeners();
   }

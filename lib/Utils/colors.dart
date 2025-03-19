@@ -6,7 +6,5 @@ class ColorCustom {
   static Color tabUnAcitveColor = const Color(0XFFb0b7c0);
   static Color tabTextColor = Colors.white;
   static Color gridBackgroundColor = const Color(0xfffae8e0);
+  static Color background = const Color(0xFFfae8e0);
 }
-
-
-

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:login_project/Screen/login.dart';
+import 'package:login_project/Screen/BottomNavigation/bottom_nav.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,18 +21,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Lottie.asset(
-        "assets/splash.json",
-        fit: BoxFit.cover,
-        height: 300,
-        width: 300,
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 5),
+     
+        child: Lottie.asset(
+          "assets/Json/splash.json",
+          fit: BoxFit.cover,
+          height: 300,
+          width: 250,
+        ),
       ),
     );
   }
 
   Future<Timer> loadSplash() async {
     return Timer(
-      const Duration(seconds: 4),
+      const Duration(seconds: 6),
       onDoneLoading,
     );
   }
@@ -40,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
   onDoneLoading() {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: ((context) => const Login()),
+        builder: ((context) => const BottomNav()),
       ),
     );
   }

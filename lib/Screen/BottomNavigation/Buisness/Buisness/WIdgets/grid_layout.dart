@@ -164,9 +164,18 @@ class _GridScreenState extends State<GridScreen> {
                 ),
               );
             })
-        : filterList(getProvider.searchFilter,
-            context); // Display filtered list based on search
+        : getProvider.filterIsNotMatch
+            ? notMatchList(getProvider)
+            : filterList(getProvider.searchFilter,
+                context); // Display filtered list based on search
   }
+}
+
+notMatchList(CategoryProvider getprovider) {
+  print("get data bool ${getprovider.filterIsNotMatch}");
+  return Container(
+    child: const Text("search item not match with list "),
+  );
 }
 
 checkUril(String image) {

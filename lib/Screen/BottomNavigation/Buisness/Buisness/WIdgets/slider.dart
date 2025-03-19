@@ -26,17 +26,14 @@ class _SliderPageState extends State<SliderPage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Column(
       children: [
         CarouselSlider.builder(
-        
           itemCount: imgList.length,
-          
           itemBuilder: (BuildContext, index, int1) {
             return Container(
                 margin: const EdgeInsets.all(5),
-                height: MediaQuery.of(context).size.height * 0.20,
+                height: MediaQuery.of(context).size.height * 0.05,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   child: CachedNetworkImage(
@@ -62,6 +59,7 @@ class _SliderPageState extends State<SliderPage> {
             },
           ),
         ),
+        // page dot indicator
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: imgList.asMap().entries.map((entry) {

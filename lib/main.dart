@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login_project/Screen/BottomNavigation/bottom_nav.dart';
 import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
+import 'package:login_project/Splash/splash_screen.dart';
+import 'package:login_project/Utils/colors.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,10 +19,11 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (context) => CategoryProvider())
         ],
-        child: const MaterialApp(
+        child: MaterialApp(
           debugShowCheckedModeBanner: false,
           home: Scaffold(
-            body: BottomNav(),
+            backgroundColor: ColorCustom.background,
+            body: const SplashScreen(),
           ),
         ));
   }
