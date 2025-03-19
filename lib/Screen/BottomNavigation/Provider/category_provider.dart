@@ -96,32 +96,34 @@ class CategoryProvider extends ChangeNotifier {
     // Reset search state when a new query is made
 
     if (query.isEmpty) {
-      _filterIsNotMatch = false;
       _searchList.clear();
       notifyListeners();
     } else if (query.isNotEmpty) {
-      List<BuissnesList> matches = [];
-      _filterIsNotMatch = false;
       _searchList.clear();
-      notifyListeners();
+      // notifyListeners();
       for (var productList in BuissnesList.productList) {
-        matches = productList
+        var matches = productList
             .where((element) =>
                 // element.name.toLowerCase().contains(query.toLowerCase()) ||
                 element.name.toLowerCase().startsWith(query.toLowerCase()))
             .toList();
-
+        print("matchs after loop $matches");
         if (matches.isNotEmpty) {
+          _filterIsNotMatch = false;
           print("match ${matches.runtimeType}");
           _searchList.addAll(matches);
+          print("add all $_searchList");
           notifyListeners();
         }
       }
-      // if (matches.isEmpty) {
-      //   print("matches is empty $matches");
-      //   _filterIsNotMatch = true;
-      //   notifyListeners();
-      // }
+
+      if (searchFilter.isEmpty) {
+        bool check = _searchList.isEmpty;
+        print("serach list $check");
+        _filterIsNotMatch = true;
+        print("filter $_filterIsNotMatch");
+        notifyListeners();
+      }
     }
     // Clear previous search results
   }
