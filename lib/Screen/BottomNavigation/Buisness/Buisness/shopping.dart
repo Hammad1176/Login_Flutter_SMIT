@@ -1,10 +1,10 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/WIdgets/grid_layout.dart';
-import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/WIdgets/categories.dart';
+import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/Widgets/grid_layout.dart';
+import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/Widgets/categories.dart';
 
-import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/WIdgets/slider.dart';
+import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/Widgets/slider.dart';
 import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -101,15 +101,18 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                 ),
 
                 //slider pages
-                SizedBox(child: SliderPage(context)),
+                if (getProvider.datIsEmpty)
+                  SizedBox(child: SliderPage(context))
+                else
+                  Container(),
 
                 // category list sateful with provider
-                getProvider.searchFilter.isNotEmpty
-                    ? Container()
-                    : const SizedBox(
+                getProvider.datIsEmpty
+                    ? const SizedBox(
                         width: double.infinity,
                         child: CategoriesList(),
-                      ),
+                      )
+                    : Container(),
 
                 // create grid screen pass category index and set the value of category wise data
                 const Expanded(child: GridScreen()),

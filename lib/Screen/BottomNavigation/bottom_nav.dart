@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:login_project/Screen/BottomNavigation/Provider/category_provider.dart';
 import 'package:login_project/Screen/BottomNavigation/Buisness/Buisness/shopping.dart';
 import 'package:login_project/Screen/BottomNavigation/Fav_View/fav.dart';
-import 'package:login_project/Screen/BottomNavigation/AddTOCart/add_to_cart.dart';
+import 'package:login_project/Screen/BottomNavigation/AddToCart/add_to_cart.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:login_project/Utils/colors.dart';
 import 'package:provider/provider.dart';
@@ -45,52 +45,46 @@ class _BottomNavState extends State<BottomNav> {
             NavigationDestination(
               icon: categoryProvider.fav!.isEmpty
                   ? const Icon(Icons.favorite_border_outlined)
-                  : badges.Badge(
-                      position: badges.BadgePosition.topEnd(top: -10, end: -12),
-                      badgeContent: Text(
-                        "${categoryProvider.fav!.length.toString()}",
-                        style: const TextStyle(fontSize: 10),
-                      ),
-                      badgeAnimation: const badges.BadgeAnimation.rotation(
-                        animationDuration: Duration(seconds: 1),
-                        colorChangeAnimationDuration: Duration(seconds: 1),
-                        loopAnimation: false,
-                        curve: Curves.fastOutSlowIn,
-                        colorChangeAnimationCurve: Curves.easeInCubic,
-                      ),
-                      showBadge: categoryProvider.fav!.isEmpty ? false : true,
-                      child: const Icon(Icons.favorite_border_outlined),
-                    ),
+                  : badgeIcon(categoryProvider.fav!.length.toString(),
+                      const Icon(Icons.favorite_border_outlined)),
+              selectedIcon: const Icon(Icons.favorite),
               label: 'Favourit List',
             ),
             const NavigationDestination(
               icon: Icon(Icons.shopping_bag_outlined),
+              selectedIcon: Icon(Icons.shopping_bag),
               label: 'Shopping',
             ),
             NavigationDestination(
               icon: categoryProvider.addToCart.isEmpty
                   ? const Icon(Icons.shopping_cart_outlined)
-                  : badges.Badge(
-                      position: badges.BadgePosition.topEnd(top: -10, end: -12),
-                      badgeContent: Text(
-                        "${categoryProvider.addToCart.length.toString()}",
-                        style: const TextStyle(fontSize: 10),
-                      ),
-                      badgeAnimation: const badges.BadgeAnimation.rotation(
-                        animationDuration: Duration(seconds: 1),
-                        colorChangeAnimationDuration: Duration(seconds: 1),
-                        loopAnimation: false,
-                        curve: Curves.fastOutSlowIn,
-                        colorChangeAnimationCurve: Curves.easeInCubic,
-                      ),
-                      child: const Icon(Icons.shopping_cart_outlined),
-                    ),
+                  : badgeIcon(categoryProvider.addToCart.length.toString(),
+                      const Icon(Icons.shopping_cart_outlined)),
+              selectedIcon: const Icon(Icons.shopping_cart),
               label: 'Add To Cart',
             ),
           ],
           selectedIndex: isSelected,
         ));
   }
+}
+
+Widget badgeIcon(String numberOfItems, Icon icon) {
+  return badges.Badge(
+    position: badges.BadgePosition.topEnd(top: -10, end: -12),
+    badgeContent: Text(
+      "$numberOfItems",
+      style: const TextStyle(fontSize: 10),
+    ),
+    badgeAnimation: const badges.BadgeAnimation.rotation(
+      animationDuration: Duration(seconds: 1),
+      colorChangeAnimationDuration: Duration(seconds: 1),
+      loopAnimation: false,
+      curve: Curves.fastOutSlowIn,
+      colorChangeAnimationCurve: Curves.easeInCubic,
+    ),
+    child: icon,
+  );
 }
 
 
@@ -154,3 +148,19 @@ class _BottomNavState extends State<BottomNav> {
 //           setState(() {});
 //         },
 //       ),
+
+// badges.Badge(
+//                       position: badges.BadgePosition.topEnd(top: -10, end: -12),
+//                       badgeContent: Text(
+//                         "${categoryProvider.addToCart.length.toString()}",
+//                         style: const TextStyle(fontSize: 10),
+//                       ),
+//                       badgeAnimation: const badges.BadgeAnimation.rotation(
+//                         animationDuration: Duration(seconds: 1),
+//                         colorChangeAnimationDuration: Duration(seconds: 1),
+//                         loopAnimation: false,
+//                         curve: Curves.fastOutSlowIn,
+//                         colorChangeAnimationCurve: Curves.easeInCubic,
+//                       ),
+//                       child: const Icon(Icons.shopping_cart_outlined),
+//                     ),

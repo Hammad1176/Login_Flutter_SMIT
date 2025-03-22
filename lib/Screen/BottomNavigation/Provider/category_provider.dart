@@ -89,49 +89,45 @@ class CategoryProvider extends ChangeNotifier {
 
   final List<BuissnesList> _searchList = [];
   List<BuissnesList> get searchFilter => _searchList;
-  bool? _filterIsNotMatch;
-  bool get filterIsNotMatch => _filterIsNotMatch!;
+  bool? _datIsEmpty = true;
+  bool get datIsEmpty => _datIsEmpty ?? true;
+  bool _filterIsEmpty = false;
+  bool get filterIsEmpty => _filterIsEmpty;
 
   searchQuery(String query) {
-    // Reset search state when a new query is made
-
     if (query.isEmpty) {
+      // search bar is empty clear filter list and show all list
+      _datIsEmpty = true;
+      notifyListeners();
       _searchList.clear();
       notifyListeners();
     } else if (query.isNotEmpty) {
+      // search bar is not empty filter list and show filtered list
       _searchList.clear();
-      // notifyListeners();
+      _datIsEmpty = false;
+      //add filter list data to search list
       for (var productList in BuissnesList.productList) {
         var matches = productList
             .where((element) =>
-                // element.name.toLowerCase().contains(query.toLowerCase()) ||
                 element.name.toLowerCase().startsWith(query.toLowerCase()))
             .toList();
-        print("matchs after loop $matches");
         if (matches.isNotEmpty) {
-          _filterIsNotMatch = false;
-          print("match ${matches.runtimeType}");
+          _filterIsEmpty = false;
           _searchList.addAll(matches);
-          print("add all $_searchList");
           notifyListeners();
         }
       }
-
+      // search list is empty not match data show _filter is empty true
       if (searchFilter.isEmpty) {
         bool check = _searchList.isEmpty;
-        print("serach list $check");
-        _filterIsNotMatch = true;
-        print("filter $_filterIsNotMatch");
+        _filterIsEmpty = true;
         notifyListeners();
       }
     }
-    // Clear previous search results
   }
 
-  //delet add to card data
+  //delete add to card data
   deleteItem(int index) {
-    print("Deleting item at index: $index, item: ${_addToCart[index].name}");
-
     _addToCart.removeAt(index);
     notifyListeners();
   }
@@ -147,6 +143,7 @@ class CategoryProvider extends ChangeNotifier {
   }
 
   rowTotal(List<BuissnesList> list, int index) async {
+    // ignore: await_only_futures
     double total = await list[index].price * list[index].quantity;
     _addToCart[index].total = total;
     // print("check total row wise element amount $total ");
