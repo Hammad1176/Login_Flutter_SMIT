@@ -22,12 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 5),
-     
+        margin: EdgeInsets.symmetric(horizontal: 20),
         child: Lottie.asset(
           "assets/Json/splash.json",
           fit: BoxFit.cover,
-          height: 300,
+          height: 250,
           width: 250,
         ),
       ),
